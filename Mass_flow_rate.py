@@ -43,8 +43,8 @@ A_sc = 1 # cross-sectional area [m^2]
 m_dot = np.zeros(len(h))
 V_dot = np.zeros(len(h))
 for i in range(0,len(h)):
-    m_dot[i] = A_sc*v_sc[i]*n_total[i]*M_ave[i]
-    V_dot[i] = m_dot[i]*R_a*300/(M_ave[i]*N_A)/101325
+    m_dot[i] = A_sc*v_sc[i]*n_total[i]*M_ave[i] # [kg/s]
+    V_dot[i] = m_dot[i]*R_a*300/(M_ave[i]*N_A)/101325*60*1e6 # [sccm]
     
 
 fig, ax = plt.subplots(figsize=(4.75,6.33))
@@ -56,8 +56,7 @@ ax.set_yticks(np.logspace(-14,-5,10))
 ax.set_ylabel('Mass flow rate/A, kg/s/$m^2$')
 ax2 = ax.twinx()
 ax2.semilogy(h,V_dot)
-#ax2.set_ylim(1e-14*8.314*300/M_ave[0]/101325,1e-5*8.314*300/M_ave[0]/101325)
-#ax2.set_yticks(np.logspace(-9,0,10))
+ax2.set_ylim(1e-6,1e3)
 ax2.set_ylabel('Mass flow rate/A, sccm/$m^2$')
 ax.grid()
 fig.tight_layout()
@@ -65,7 +64,7 @@ fig.savefig('Mass flow rate vs Altitude',dpi=300)
 plt.show()
 
 #%%
-x = 20
+x = 1
 print(h[x])
 print(v_sc[x])
 print(T[x])
