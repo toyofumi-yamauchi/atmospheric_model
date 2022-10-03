@@ -22,7 +22,7 @@ n_O = data[:,8]   # O  number density [cm^-3]
 n_Ar = data[:,15] # Ar number density [cm^-3]
 n_He = data[:,14] # He number density [cm^-3]
 n_H = data[:,16]  # H  number density [cm^-3]
-T = data[:,12]    # temperature [K]
+T = data[:,12]    # temperature [K]|
 
 # total number density [cm^-3]
 n_total = n_N2 + n_O2 + n_N + n_O + n_Ar + n_He + n_H
