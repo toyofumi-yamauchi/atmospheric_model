@@ -45,8 +45,8 @@ fig.tight_layout()
 fig.savefig('Pressure vs Altitude',dpi=300)
 plt.show()
 #%%
-x = 6
-print(h[x])
-print(T[x])
-print(P[x])
-print(P[x]*760/101325)
+x = 10
+print('h  = {} km'.format(h[x]))
+print('T  = {:.1f} K'.format(T[x]))
+print('P  = {:.2e} Pa'.format(P[x]))
+print('   = {:.2e} Torr'.format(P[x]*760/101325))
