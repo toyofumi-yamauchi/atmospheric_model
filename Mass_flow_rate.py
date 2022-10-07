@@ -64,7 +64,7 @@ fig.savefig('Mass flow rate vs Altitude',dpi=300)
 plt.show()
 
 #%%
-x = 9
+x = 30
 print('h    = {} km'.format(h[x]))
 print('v_sc = {:.2f} m/s'.format(v_sc[x]))
 print('T    = {:.1f} K'.format(T[x]))
