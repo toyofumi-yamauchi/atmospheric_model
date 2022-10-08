@@ -14,17 +14,17 @@ r_earth = 6371 # Earth radius [km]
 filename='msis20output_81312020-2.txt'
 data = functions.load_NRLMSIS_data(filename)
 
-h = data[:,5]     # altitude [km]
-n_N2 = data[:,9]  # N2 number density [cm^-3]
-n_O2 = data[:,10] # O2 number density [cm^-3]
-n_N = data[:,17]  # N  number density [cm^-3]
-n_O = data[:,8]   # O  number density [cm^-3]
-n_Ar = data[:,15] # Ar number density [cm^-3]
-n_He = data[:,14] # He number density [cm^-3]
-n_H = data[:,16]  # H  number density [cm^-3]
-T = data[:,12]    # temperature [K]|
+h = data[:,5]         # altitude [km]
+n_N2 = data[:,9]*1e6  # N2 number density [m^-3]
+n_O2 = data[:,10]*1e6 # O2 number density [m^-3]
+n_N = data[:,17]*1e6  # N  number density [m^-3]
+n_O = data[:,8]*1e6   # O  number density [m^-3]
+n_Ar = data[:,15]*1e6 # Ar number density [m^-3]
+n_He = data[:,14]*1e6 # He number density [m^-3]
+n_H = data[:,16]*1e6  # H  number density [m^-3]
+T = data[:,12]        # temperature [K]
 
-# total number density [cm^-3]
+# total number density [m^-3]
 n_total = n_N2 + n_O2 + n_N + n_O + n_Ar + n_He + n_H
 
 # total mass density [kg/m^-3]
@@ -51,16 +51,37 @@ fig, ax = plt.subplots(figsize=(4.75,6.33))
 ax.semilogy(h,m_dot/A_sc)
 ax.set_xlim(50,400)
 ax.set_xlabel('Altitude, km')
-ax.set_ylim(1e-14,1e-5)
-ax.set_yticks(np.logspace(-14,-5,10))
+ax.set_ylim(1e-8,1e1)
+ax.set_yticks(np.logspace(-8,1,10))
 ax.set_ylabel('Mass flow rate/A, kg/s/$m^2$')
 ax2 = ax.twinx()
 ax2.semilogy(h,V_dot)
-ax2.set_ylim(1e-6,1e3)
+ax2.set_ylim(1e-1,1e8)
+ax2.set_yticks(np.logspace(-1,8,10))
 ax2.set_ylabel('Mass flow rate/A, sccm/$m^2$')
 ax.grid()
 fig.tight_layout()
 fig.savefig('Mass flow rate vs Altitude',dpi=300)
+plt.show()
+
+fig, ax = plt.subplots(figsize=(4.75,6.33))
+ax.semilogy(h,n_total,'-',label='total')
+ax.semilogy(h,n_N2,'--',label='N2')
+ax.semilogy(h,n_O2,'--',label='O2')
+ax.semilogy(h,n_N,'--',label='N')
+ax.semilogy(h,n_O,'--',label='O')
+ax.semilogy(h,n_Ar,'--',label='AR')
+ax.semilogy(h,n_He,'--',label='He')
+ax.semilogy(h,n_H,'--',label='H')
+ax.set_xlim(50,400)
+ax.set_xlabel('Altitude, km')
+ax.set_ylim(1e14,1e23)
+ax.set_yticks(np.logspace(14,23,10))
+ax.set_ylabel('Number density, m$^-$$^3$')
+ax.grid()
+ax.legend()
+fig.tight_layout()
+fig.savefig('Density vs Altitude',dpi=300)
 plt.show()
 
 #%%

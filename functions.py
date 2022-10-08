@@ -2,8 +2,8 @@ def load_NRLMSIS_data(filename):
     '''
     Converting the .txt file into the array
     .txt file is downloaded from https://kauai.ccmc.gsfc.nasa.gov/instantrun/msis
-
     '''
+
     # Import libraries
     import numpy as np
     import re
@@ -11,7 +11,7 @@ def load_NRLMSIS_data(filename):
     # Importing the .txt file
     with open(filename,'r') as f:
         lines = f.readlines()
-    print(lines[0])
+    #print(lines[0])
     #print(lines[1])
 
     # Converting the lines into rows
@@ -24,6 +24,9 @@ def load_NRLMSIS_data(filename):
 
     data = rows
 
-    
     return data
 
+def P_from_n_and_T(n,T):
+    k_B = 1.380649e-23 # Boltzmann constant [J/K]
+    P = n*k_B*T        # Pressure [Pa]
+    return P
