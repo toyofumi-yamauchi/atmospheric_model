@@ -27,6 +27,32 @@ def load_NRLMSIS_data(filename):
     return data
 
 def P_from_n_and_T(n,T):
+    '''
+    Output: 
+    P = pressure [Pa]
+    Input: 
+    n = total number density [m^-3]
+    T = gas temperature [K]
+    '''
     k_B = 1.380649e-23 # Boltzmann constant [J/K]
     P = n*k_B*T        # Pressure [Pa]
     return P
+
+def neutral_flux(h,n):
+    '''
+    Output:
+    v_sc = orbital speed [m/s]
+    Γ    = neutral flux [#/m^2/s]
+    Input: 
+    h = altitude [kg]
+    n = total number density [m^-3]
+    '''
+    import numpy as np
+
+    G = 6.674e-11      # Gravitational constant [m^3/kg/s^2]
+    M_earth = 5.972e24 # Earth mass [kg]
+    r_earth = 6371     # Earth radius [km]
+
+    v_sc = np.sqrt(G*M_earth/((r_earth+h)*1000))
+    Γ = n*v_sc
+    return Γ, v_sc
