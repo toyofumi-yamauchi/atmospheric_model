@@ -11,7 +11,7 @@ def load_NRLMSIS_data(filename):
     # Importing the .txt file
     with open(filename,'r') as f:
         lines = f.readlines()
-    #print(lines[0])
+    print(lines[0])
     #print(lines[1])
 
     # Converting the lines into rows
