@@ -56,3 +56,15 @@ def neutral_flux(h,n):
     v_sc = np.sqrt(G*M_earth/((r_earth+h)*1000))
     Γ = n*v_sc
     return Γ, v_sc
+
+def index_from_H(h,H):
+    '''
+    Output: 
+    x = index for a given h
+    Input:
+    h = the altitude [km]
+    H = the list of altitude [km]
+    '''
+    ΔH = H[1]-H[0]
+    x = (h-H[0])/ΔH
+    return x
