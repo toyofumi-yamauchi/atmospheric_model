@@ -113,7 +113,7 @@ fig.tight_layout()
 fig.savefig('Pressure vs Altitude',dpi=300)
 plt.show()
 #%%
-h = 200 # km
+h = 105 # km
 x = int(f.index_from_H(h,H))
 print('h       = {} km'.format(H[x]))
 print('v_sc    = {:.2f} m/s'.format(v_sc[x]))
@@ -127,5 +127,6 @@ print('n_O     = {:.2e} m^-3 ({:.1f}%)'.format(n_O[x],n_O[x]/n_total[x]*100))
 print('n_Ar    = {:.2e} m^-3 ({:.1f}%)'.format(n_Ar[x],n_Ar[x]/n_total[x]*100))
 print('n_He    = {:.2e} m^-3 ({:.1f}%)'.format(n_He[x],n_He[x]/n_total[x]*100))
 print('n_H     = {:.2e} m^-3 ({:.1f}%)'.format(n_H[x],n_H[x]/n_total[x]*100))
+print('Γ       = {:.2e} 1/m^2/s'.format(Γ[x]))
 print('m_dot/A = {:.2e} kg/s/m^2'.format(m_dot[x]))
 print('V_dot/A = {:.2e} sccm/m^2'.format(V_dot[x]))
