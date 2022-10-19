@@ -11,7 +11,7 @@ def load_NRLMSIS_data(filename):
     # Importing the .txt file
     with open(filename,'r') as f:
         lines = f.readlines()
-    print(lines[0])
+    #print(lines[0])
     #print(lines[1])
 
     # Converting the lines into rows
@@ -68,3 +68,16 @@ def index_from_H(h,H):
     ΔH = H[1]-H[0]
     x = (h-H[0])/ΔH
     return x
+
+def v_th(T,m):
+    '''
+    Output: 
+    v = thermal speed [m/s]
+    Input:
+    T = temperature [K]
+    m = mass [kg]
+    '''
+    import numpy as np
+    k_B = 1.380649e-23 # Boltzmann constant [J/K]
+    v = np.sqrt(k_B*T/m)
+    return v
