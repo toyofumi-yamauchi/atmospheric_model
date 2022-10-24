@@ -12,6 +12,7 @@ G = 6.674e-11 # Gravitational constant [m^3/kg/s^2]
 M_earth = 5.972e24 # Earth mass [kg]
 r_earth = 6371 # Earth radius [km]
 
+# https://kauai.ccmc.gsfc.nasa.gov/instantrun/msis
 filename='msis20output_81312020-2.txt'
 data = f.load_NRLMSIS_data(filename)
 
