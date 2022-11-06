@@ -232,7 +232,7 @@ ax.set_title('O2,O vs Altitude')
 fig.tight_layout()
 fig.savefig('O2,O vs Altitude',dpi=300)
 plt.show()
-#%%
+#%% 
 h = 225 # km
 x = int(f.index_from_H(h,H))
 print('h       = {} km'.format(H[x]))
@@ -250,3 +250,7 @@ print('n_H     = {:.2e} m^-3 ({:.1f}%)'.format(n_H[x],n_H[x]/n_total[x]*100))
 print('Γ       = {:.2e} 1/m^2/s'.format(Γ[x]))
 print('m_dot/A = {:.2e} kg/s/m^2'.format(m_dot[x]))
 print('V_dot/A = {:.2e} sccm/m^2'.format(V_dot[x]))
+#%% 
+n = 1e19
+x = int(f.index_from_n(n,n_N2 + n_O2 + n_O))
+print('h       = {} km'.format(H[x]))

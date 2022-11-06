@@ -69,6 +69,30 @@ def index_from_H(h,H):
     x = (h-H[0])/ΔH
     return x
 
+def index_from_n(n,N):
+    '''
+    Output: 
+    x = index for a given n
+    Input:
+    n = the density [m^-3]
+    N = the list of density [m^-3]
+    '''
+    ΔN = N[1]-N[0]
+    x = (n-N[0])/ΔN
+    return x
+
+def index_from_flux(Γ,Gamma):
+    '''
+    Output: 
+    x = index for a given h
+    Input:
+    Γ = the flux [#/m^2/s]
+    Gamma = the list of flux [#/m^2/s]
+    '''
+    ΔGamma = Gamma[1]-Gamma[0]
+    x = (Γ-Gamma[0])/ΔGamma
+    return x
+
 def v_th(T,m):
     '''
     Output: 
