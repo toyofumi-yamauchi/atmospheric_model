@@ -2,7 +2,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from functions import load_NRLMSIS_data, P_from_n_and_T, neutral_flux
 import functions as f
 
 R   = 8.314 # universal gas constant [J/mol/K]
@@ -251,6 +250,10 @@ print('Γ       = {:.2e} 1/m^2/s'.format(Γ[x]))
 print('m_dot/A = {:.2e} kg/s/m^2'.format(m_dot[x]))
 print('V_dot/A = {:.2e} sccm/m^2'.format(V_dot[x]))
 #%% 
-n = 1e19
-x = int(f.index_from_n(n,n_N2 + n_O2 + n_O))
-print('h       = {} km'.format(H[x]))
+n_x = 1.00e19
+h_x = f.H_from_n(n_x,n_N2 + n_O2 + n_O,H)
+print('h = {:.1f} km for n = {:.2e} m^-3'.format(h_x,n_x))
+#%%
+Γ_x = 6.17e17
+h_x = f.H_from_n(Γ_x,(n_N2 + n_O2 + n_O)*7800,H)
+print('h = {:.1f} km for Γ = {:.2e} m^-3'.format(h_x,Γ_x))

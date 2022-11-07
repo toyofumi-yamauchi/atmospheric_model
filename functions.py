@@ -69,29 +69,64 @@ def index_from_H(h,H):
     x = (h-H[0])/ΔH
     return x
 
-def index_from_n(n,N):
+def H_from_n(n_x,N,H):
     '''
     Output: 
-    x = index for a given n
+    h_x = altitude giving n_x [km]
     Input:
-    n = the density [m^-3]
+    n_x = the arbitrary density [m^-3]
     N = the list of density [m^-3]
+    H = the list of altitude [km]
     '''
-    ΔN = N[1]-N[0]
-    x = (n-N[0])/ΔN
-    return x
+    import numpy as np
+    
+    n_total = N
+    n_closest = min(n_total,key=lambda x:abs(x-n_x))
+    index_n = np.where(n_total == n_closest)[0][0]
+    h_closest = H[index_n]
+    if n_closest > n_x:
+        n_1 = n_closest
+        h_1 = h_closest
+        n_2 = n_total[index_n+1]
+        h_2 = H[index_n+1]
+    elif n_closest < n_x:
+        n_1 = n_total[index_n-1]
+        h_1 = H[index_n-1]
+        n_2 = n_closest
+        h_2 = h_closest
 
-def index_from_flux(Γ,Gamma):
+    h_x = h_1 + (n_x-n_1)/(n_2-n_1)*(h_2-h_1)
+
+    return h_x
+
+def H_from_flux(Γ_x,Γ,H):
     '''
     Output: 
-    x = index for a given h
+    h_x = altitude giving Γ_x [km]
     Input:
-    Γ = the flux [#/m^2/s]
-    Gamma = the list of flux [#/m^2/s]
+    Γ_x = the arbitrary flux [#/m^2/s]
+    Γ = the list of flux [#/m^2/s]
+    H = the list of altitude [km]
     '''
-    ΔGamma = Gamma[1]-Gamma[0]
-    x = (Γ-Gamma[0])/ΔGamma
-    return x
+    import numpy as np
+    
+    Γ_total = Γ
+    Γ_closest = min(Γ_total,key=lambda x:abs(x-Γ_x))
+    index_Γ = np.where(Γ_total == Γ_closest)[0][0]
+    h_closest = H[index_Γ]
+    if Γ_closest > Γ_x:
+        Γ_1 = Γ_closest
+        h_1 = h_closest
+        Γ_2 = Γ_total[index_Γ+1]
+        h_2 = H[index_Γ+1]
+    elif Γ_closest < Γ_x:
+        Γ_1 = Γ_total[index_Γ-1]
+        h_1 = H[index_Γ-1]
+        Γ_2 = Γ_closest
+        h_2 = h_closest
+
+    h_x = h_1 + (Γ_x-Γ_1)/(Γ_2-Γ_1)*(h_2-h_1)
+    return Γ_x
 
 def v_th(T,m):
     '''
