@@ -254,6 +254,6 @@ n_x = 1.00e19
 h_x = f.H_from_n(n_x,n_N2 + n_O2 + n_O,H)
 print('h = {:.1f} km for n = {:.2e} m^-3'.format(h_x,n_x))
 #%%
-Γ_x = 6.17e17
+Γ_x = 1.93e19
 h_x = f.H_from_n(Γ_x,(n_N2 + n_O2 + n_O)*7800,H)
 print('h = {:.1f} km for Γ = {:.2e} m^-3'.format(h_x,Γ_x))
