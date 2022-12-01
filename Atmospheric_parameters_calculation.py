@@ -175,7 +175,7 @@ fig.tight_layout()
 fig.savefig('Speed, Temperature vs Altitude',dpi=300)
 plt.show()
 
-fig, ax = plt.subplots(figsize=(4.75,5.25))
+fig, ax = plt.subplots(figsize=(6.0,4.25))
 l1 = ax.semilogy(H,n_total*v_sc,label='total',linewidth=3)
 l2 = ax.plot(H,n_N2*v_sc,'--',label='N2')
 l3 = ax.plot(H,n_O2*v_sc,'--',label='O2')
@@ -183,7 +183,7 @@ l4 = ax.plot(H,n_O*v_sc,'--',label='O')
 ax.set_xlim(50,400)
 ax.set_xlabel('Altitude, km')
 ax.set_ylim(1e18,1e26)
-ax.set_yticks(np.logspace(18,26,9))
+ax.set_yticks(np.logspace(16,26,11))
 ax.set_ylabel('Flux, #/$m^2$s')
 ls = l1+l2+l3+l4
 labs = [l.get_label() for l in ls]
@@ -232,7 +232,7 @@ fig.tight_layout()
 fig.savefig('O2,O vs Altitude',dpi=300)
 plt.show()
 #%% 
-h = 225 # km
+h = 400 # km
 x = int(f.index_from_H(h,H))
 print('h       = {} km'.format(H[x]))
 print('v_sc    = {:.2f} m/s'.format(v_sc[x]))
@@ -254,6 +254,8 @@ n_x = 1.00e19
 h_x = f.H_from_n(n_x,n_N2 + n_O2 + n_O,H)
 print('h = {:.1f} km for n = {:.2e} m^-3'.format(h_x,n_x))
 #%%
-Γ_x = 1.93e19
+Γ_x = 0.625e21          # #/m^2/s
+I_x = Γ_x*1.602e-19 # A/m^2
 h_x = f.H_from_n(Γ_x,(n_N2 + n_O2 + n_O)*7800,H)
 print('h = {:.1f} km for Γ = {:.2e} m^-3'.format(h_x,Γ_x))
+print('I_x = {:.1f} mA/cm^2'.format(I_x*1000/100/100))
