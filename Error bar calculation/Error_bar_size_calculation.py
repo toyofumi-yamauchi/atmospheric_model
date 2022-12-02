@@ -40,6 +40,9 @@ for i in range(5):
     gas = np.array(('N2','O2','O','N','Ar','He','H'))
     n_gas = np.array((n_N2,n_O2,n_O,n_N,n_Ar,n_He,n_H))
     for j in range(3):
+
+        find the index of max, and find the abusolute max condition
+
         print(' -------')
         print(' Gas = '+gas[j])
         print('  max: {:.2e} m^-3'.format(max(n_gas[j])))
